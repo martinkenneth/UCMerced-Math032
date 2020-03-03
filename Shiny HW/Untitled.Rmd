@@ -1,0 +1,30 @@
+---
+title: "SHW1"
+author: "Carl Kennerth Martin"
+date: "2/12/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Shiny HW 1
+```{r}
+n <- 12
+p <- 0.54
+
+sum(dbinom(4:4, n, p))
+
+```
+
+# Shiny HW 2
+
+```{r}
+p <- 0.65 # Chance of randomly selecting a ripe avacado 
+
+sum(dgeom(3, 0.65))
+#sum(pgeom())
+
+```
+

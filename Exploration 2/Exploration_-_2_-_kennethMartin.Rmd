@@ -1,0 +1,99 @@
+---
+title: "Exploration 2"
+author: "Kenneth Martin"
+date: "1/26/2020"
+output: 
+  html_document:
+        theme: cerulean
+---
+
+# Math 32
+## Exploration 2
+
+In this `exploration`, you are asked to
+
+* find sample means and medians from a randomized data sample
+* observe the differences in the practice of using means or medians
+
+1. First,
+    a. Type your name into the author field in the YAML parameters above
+    b. Also save this file while replacing "template" with your full name (be sure to keep the *.rmd file format).
+
+2. Demonstrate your understanding about the example code block below by adding at least 5 comments in the code block in your own words.
+
+```{r, message = FALSE, warning = FALSE}
+library("ggplot2")
+
+N <- 32 # Sample Size
+
+shoe_sizes <- 6:14 # Set boundaries from 6 to 14
+without_outlier <- sample(shoe_sizes, N, replace = TRUE) # Take a sample with replacement 
+df_without_outlier <- data.frame(without_outlier) # Create dataframe
+
+outlier <- 100 # init outlier value to 100
+with_outlier <- c(without_outlier, outlier)
+df_with_outlier <- data.frame(with_outlier)
+
+ggplot(df_without_outlier, aes(x = without_outlier)) +
+  geom_histogram(binwidth = 1, color = "black", fill = "white") +
+  geom_vline(aes(xintercept = mean(without_outlier)),
+             color = "blue", linetype = "dashed", size = 2) +
+  labs(title = "Shoe Sizes", subtitle = "Exploring Means",
+       caption = "Math 32", x = "shoe sizes") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+3. Make at least two observations about the results (the graph) in an unordered list.
+* The graph seems normal and is not skewed.
+* The mean does not match the median.
+
+4. In the code block below,
+
+    a. set the `eval` parameter for the code block to `TRUE`
+    b. graph the "with outlier" data by making changes in the `ggplot` line
+    c. *add* another `geom_vline` layer that 
+        * calculates and displays the mean with the outlier
+        * has a red color
+        * is a dotted line
+    d. replace "Math 32" with your name in the caption
+  
+```{r, eval = TRUE}
+ggplot(df_with_outlier, aes(x = with_outlier)) +
+  geom_histogram(binwidth = 1, color = "black", fill = "white") +
+  geom_vline(aes(xintercept = mean(without_outlier)),
+             color = "blue", linetype = "dashed", size = 2) +
+  geom_vline(aes(xintercept = mean(with_outlier)),
+             color = "red", linetype = "dotted", size = 2) +
+  labs(title = "Shoe Sizes", subtitle = "Exploring Means",
+       caption = "Kenneth Martin", x = "shoe sizes") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+5. Repeat the previous task in a new code block, but compute the `median` without and with the outlier.
+
+```{r, eval = TRUE}
+ggplot(df_with_outlier, aes(x = with_outlier)) +
+  geom_histogram(binwidth = 1, color = "black", fill = "white") +
+  geom_vline(aes(xintercept = median(without_outlier)),
+             color = "blue", linetype = "dashed", size = 2) +
+  geom_vline(aes(xintercept = median(with_outlier)),
+             color = "red", linetype = "dotted", size = 2) +
+  labs(title = "Shoe Sizes", subtitle = "Exploring Means",
+       caption = "Kenneth Martin", x = "shoe sizes") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+6.  Compute the *difference* between the means from before and after including the outlier.  Compute the *difference* between the medians from before and after including the outlier.
+```{r}
+mean(with_outlier) - mean(without_outlier)
+median(with_outlier) - median(without_outlier)
+```
+
+
+7. Make at least two observations about the results (your new graphs) in an unordered list.
+* The median's of the two are very close to each other.
+* The graph appears to be skewed.
+
+8. Finally, `knit` your work as either an HTML or PDF document, and upload that document back into the CatCourses assignment.

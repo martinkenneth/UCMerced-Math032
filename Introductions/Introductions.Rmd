@@ -1,0 +1,41 @@
+---
+title: "Introductions"
+author: "Carl Kenneth Martin"
+date: "1/27/2020"
+output: html_document
+---
+
+```{r, setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##### 1 Major & Classes
+  Major: Computer Science and Engineering  
+  Class Difficulty Ranking:
+  
+      1. ENGR 057 - Statics and Dynamics  
+      2. MATH 032 - Probability and Statistics
+      3. MATH 024 - Linear Algebra
+
+##### 2 Why Math 32?
+I am enrolled in this class becuase i find statstics and probabilty to be somewhat interesting. What I hope to learn from this class is a deeper insight and understand of how statistics is applied in everyday scenarios.
+
+##### 3 Fascinating Fact
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+
+#"Alchohol" in alcholic beverages like beer, wine, and spirits is actually ethanol (ethyl alcohol). It is actually the only type of alcohol you can drink without doing serious damage to your body.
+```
+
+##### 4 Hope and Goals
+* Graduate college with a BS in Computer Science and Engineering
+* I hope to one day go sky diving.
+
+##### 5 Fears and Obstacles
+```{r}
+knitr::opts_chunk$set(echo = FALSE, eval = FALSE)
+# I have a fear of heights and an obstacle I have to face is my balcony at my house every morning.
+```
+
+##### 6 Lively Song 
+*ACDC - Back in Black*

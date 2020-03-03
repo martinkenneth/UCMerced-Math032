@@ -1,0 +1,42 @@
+---
+title: "02_-_Inclusion-Exclusion"
+author: "Derek Sollberger"
+date: "1/24/2020"
+output: html_document
+---
+
+# Example 1
+
+Consider rolling one six-sided die.  For each of the following events, list their possible ways and find their probabilities.
+
+```{r}
+d6 <- 1:6 # one die
+
+# rolling one die
+sample(1:6, 1, replace = TRUE)
+
+# rolling two dice
+sample(1:6, 2, replace = TRUE)
+```
+
+```{r}
+N <- 100000 # number of die rolls
+
+# A: rolling an even number
+p_A <- sum(sample(1:6, N, replace = TRUE) %% 2 == 0) / N
+p_A
+
+# B: number greater than 3
+p_B <- sum(sample(1:6, N, replace = TRUE) > 3) / N
+p_B
+
+# A and B
+p_A_and_B <- sum((sample(1:6, N, replace = TRUE) %% 2 == 0) &
+                  (sample(1:6, N, replace = TRUE) >= 3)) / N #???
+p_A_and_B
+
+# A or B
+p_A_or_B <- p_A + p_B - p_A_and_B
+p_A_or_B
+```
+

@@ -1,0 +1,87 @@
+---
+title: "A Brief Simulation"
+author: "Derek Sollberger"
+date: "12/23/2019"
+output: html_document
+---
+
+```{r, message = FALSE, warning = FALSE}
+library(tidyverse)
+```
+
+# Vectors
+
+```{r}
+# go over random numbers
+one_random_number <- runif(1)
+one_random_number
+
+# build a vector of random numbers
+X <- runif(32)
+X
+
+# calculation on a vector
+FX <- cumsum(X)
+FX
+```
+
+# Q: How many of those random numbers do we need for the sum to be greater than one?
+
+```{r}
+N <- 1000000 #number of trials
+trial <- 1:N
+numbers_needed <- rep(0, N)
+
+for(i in 1:N){
+  X  <- runif(32)
+  FX <- cumsum(X)
+  numbers_needed[i] <- which.max(FX > 1)
+}
+
+df <- data.frame(trial, numbers_needed)
+```
+
+# Answer
+
+```{r}
+mean(df$numbers_needed)
+```
+
+# The Birthday Problem
+
+How many people need to enter the room so that two people share a birthday?
+
+```{r}
+N <- 10000 #number of trials
+trial <- 1:N
+number_needed <- rep(0, N)
+
+for(i in 1:N){
+  birthdays <- sample(1:365, 145, replace = TRUE)
+  number_needed[i] <- which.max(duplicated(birthdays))
+}
+
+df <- data.frame(trial, number_needed)
+```
+
+# Answer
+
+```{r}
+mean(df$number_needed)
+```
+
+```{r}
+df %>%
+  ggplot(aes(x = number_needed)) +
+  geom_density(kernel = "gaussian") +
+  geom_vline(xintercept = mean(df$number_needed), 
+             color = "red",
+             size = 2,
+             linetype = "longdash") +
+  labs(title = "The Birthday Problem",
+       subtitle = "How many people are needed to share a birthday?",
+       caption = "Math 32",
+       x = "number of students") +
+  theme_minimal()
+```
+

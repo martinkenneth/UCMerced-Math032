@@ -1,0 +1,14 @@
+---
+title: "Useful R Shortcuts"
+output: html_document
+---
+
+#### New Line
+- Leave two hard spaces after word to create a new line.
+
+##### Indenting 
+
+- macOS  
+  - option+space (alt+space)  
+  - "&nbsp;" (ugly code)
+
